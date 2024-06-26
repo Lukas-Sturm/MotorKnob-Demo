@@ -1,20 +1,27 @@
+mod motorknob;
+
 use gpiod::{Chip, Bias, Options, EdgeDetect};
+use motorknob::MotorKnob;
 
-fn main() -> std::io::Result<()> {
-    let chip = Chip::new("gpiochip0")?;
+fn main() -> anyhow::Result<()> {
+    let mut motor_knob = MotorKnob::new()?;
 
-    let opts = Options::input([26])
-        .bias(Bias::PullUp)
-        .edge(EdgeDetect::Falling)
-        .consumer("change-profile-input");
+    println!("position: {}", motor_knob.get_position()?);
 
-    let mut inputs = chip.request_lines(opts)?;
+    // let chip = Chip::new("gpiochip0")?;
 
-    loop {
-        let event = inputs.read_event()?;
+    // let opts = Options::input([26])
+    //     .bias(Bias::PullUp)
+    //     .edge(EdgeDetect::Falling)
+    //     .consumer("change-profile-input");
 
-        println!("event: {:?}", event);
-    }
+    // let mut inputs = chip.request_lines(opts)?;
+
+    // loop {
+    //     let event = inputs.read_event()?;
+
+    //     println!("event: {:?}", event);
+    // }
 
     Ok(())
 }

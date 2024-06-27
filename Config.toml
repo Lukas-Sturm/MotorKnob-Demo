@@ -1,0 +1,11 @@
+[[profiles]]  
+name = "Normal"
+detents = 80
+start_position = 80
+end_position = 160
+
+[[profiles]]  
+name = "Fine"
+detents = 160
+start_position = 160
+end_position = 320

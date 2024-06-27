@@ -6,3 +6,5 @@ edition = "2021"
 [dependencies]
 anyhow = "1.0.86"
 gpiod = "0.3.0"
+serde = { version = "1.0.203", features = ["derive"] }
+toml = "0.8.14"

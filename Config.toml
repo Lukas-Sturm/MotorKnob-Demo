@@ -1,3 +1,5 @@
+button_pin = 26
+
 [[profiles]]  
 name = "Normal"
 detents = 80

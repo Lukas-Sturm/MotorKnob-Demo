@@ -6,15 +6,17 @@ Uses GPIO Button to switch Profiles and displays position on console.
 Create `Config.toml` next to binary.  
 Define at least one profile.  
 ```
+button_pin = 26
+
 [[profiles]]
 name = "Normal"
 detents = 80
 start_position = 80
 end_position = 160
 ```
-Attach a button to *GPIO26*, connect to ground.
+Attach a button to GPIO *button_pin*, connect button to ground.
 
-Using the button switches through defined `[[profiles]]`  
+Pressing the button will cycle through the defined `[[profiles]]`.
 
 ## Caveat
 Only supposed to compile for Linux, `aarch64-unknown-linux-gnu` set as default Target.  

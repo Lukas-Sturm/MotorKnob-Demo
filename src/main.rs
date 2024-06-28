@@ -9,6 +9,7 @@ use std::time::Duration;
 
 #[derive(Debug, Deserialize)]
 struct Config {
+    button_pin: u32,
     profiles: Vec<Profile>
 }
 
@@ -23,7 +24,7 @@ fn main() -> anyhow::Result<()> {
 
     // libgpiod setup
     let chip = Chip::new("gpiochip0")?;
-    let opts = Options::input([26])
+    let opts = Options::input([config.button_pin])
         .bias(Bias::PullUp)
         .edge(EdgeDetect::Both)
         .consumer("change-profile-input");
@@ -77,7 +78,8 @@ fn load_config() -> anyhow::Result<Config> {
         println!("No config found. Consider creating Config.toml");
         println!("Using default config");
         return Ok(Config {
-            profiles: vec![default_profile]
+            profiles: vec![default_profile],
+            button_pin: 26
         })
     }
 
